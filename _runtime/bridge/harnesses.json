@@ -1,0 +1,758 @@
+{
+  "$comment": "Registre des harnais. Ajouter un harnais = ajouter une entree ici. AUCUN code ne change. C'est la condition de l'agnosticite : un switch sur le nom du harnais serait l'inverse d'un adaptateur.",
+  "$schema_entree": {
+    "id": "identifiant stable, kebab-case",
+    "libelle": "nom affiche",
+    "invocation": {
+      "type": "cli | http | ws | sdk | desktop",
+      "cible": "binaire, URL ou point d'entree"
+    },
+    "capacites": "liste parmi le vocabulaire canonique ci-dessous",
+    "surfaces": "protocoles que ce harnais parle nativement",
+    "statut": "mesure | declare | suppose",
+    "mesure_le": "date ISO si statut=mesure, sinon null",
+    "routeur": "vrai si ce harnais en lance d autres",
+    "couvre": "harnais que ce routeur sait lancer",
+    "deploiement": "cibles ou ce harnais tourne : render, vps, local",
+    "domaine": "metadonnee pure, non lue par comparerAdaptateurs() ni par le routeur. Affectation d un harnais a un domaine des 8 (ou 00_meta pour Summers/B1). Sert de reference humaine, jamais de switch de code."
+  },
+  "$capacites_canoniques": [
+    "tool_call",
+    "file_edit",
+    "shell",
+    "browser",
+    "subagents",
+    "streaming",
+    "vision",
+    "voice",
+    "cron",
+    "webhook",
+    "long_context"
+  ],
+  "harnesses": [
+    {
+      "id": "claude-code",
+      "libelle": "Claude Code",
+      "invocation": {
+        "type": "cli",
+        "cible": "C:/Users/amado/AppData/Roaming/npm/claude"
+      },
+      "capacites": [
+        "tool_call",
+        "file_edit",
+        "shell",
+        "subagents",
+        "streaming",
+        "long_context"
+      ],
+      "surfaces": [
+        "mcp"
+      ],
+      "statut": "mesure",
+      "mesure_le": "2026-08-28",
+      "note": "v2.1.143. Slots de modele OPUS/SONNET/HAIKU + ANTHROPIC_CUSTOM_MODEL_OPTION. Les sous-agents heritent de la config de session. | sonde 2026-08-28 : joignable (chemin absolu present)",
+      "domaine": "07_RD_IT",
+      "lancable_par": [
+        "ori"
+      ],
+      "sonde": {
+        "joignable": true,
+        "chemin": "C:/Users/amado/AppData/Roaming/npm/claude",
+        "motif": "chemin absolu present",
+        "version": null,
+        "sonde_le": "2026-08-28",
+        "cote": "windows",
+        "windows": {
+          "joignable": true,
+          "chemin": "C:/Users/amado/AppData/Roaming/npm/claude",
+          "motif": "chemin absolu present"
+        },
+        "wsl": {
+          "joignable": false,
+          "chemin": null,
+          "motif": "cible non sondable cote WSL (pas un identifiant)"
+        }
+      }
+    },
+    {
+      "id": "codex",
+      "libelle": "Codex CLI",
+      "invocation": {
+        "type": "cli",
+        "cible": "codex"
+      },
+      "capacites": [
+        "tool_call",
+        "file_edit",
+        "shell",
+        "streaming"
+      ],
+      "surfaces": [
+        "mcp"
+      ],
+      "statut": "mesure",
+      "mesure_le": "2026-08-28",
+      "note": "codex-cli 0.130.0-alpha.5, detecte par omniroute status. | sonde 2026-08-28 : joignable, codex-cli 0.130.0-alpha.5 (present des deux cotes (Windows: C:\\Users\\amado\\AppData\\Local\\OpenAI\\Codex\\bin\\codex.exe | WSL: /home/amdkn7/.local/bin/codex))",
+      "domaine": "06_Finance_ROI",
+      "lancable_par": [
+        "ori"
+      ],
+      "sonde": {
+        "joignable": true,
+        "chemin": "C:\\Users\\amado\\AppData\\Local\\OpenAI\\Codex\\bin\\codex.exe",
+        "motif": "present des deux cotes (Windows: C:\\Users\\amado\\AppData\\Local\\OpenAI\\Codex\\bin\\codex.exe | WSL: /home/amdkn7/.local/bin/codex)",
+        "version": "codex-cli 0.130.0-alpha.5",
+        "sonde_le": "2026-08-28",
+        "cote": "les-deux",
+        "windows": {
+          "joignable": true,
+          "chemin": "C:\\Users\\amado\\AppData\\Local\\OpenAI\\Codex\\bin\\codex.exe",
+          "motif": "trouve dans C:\\Users\\amado\\AppData\\Local\\OpenAI\\Codex\\bin"
+        },
+        "wsl": {
+          "joignable": true,
+          "chemin": "/home/amdkn7/.local/bin/codex",
+          "motif": "trouve dans WSL Ubuntu-24.04"
+        }
+      }
+    },
+    {
+      "id": "hermes-agent",
+      "libelle": "Hermes Agent",
+      "invocation": {
+        "type": "cli",
+        "cible": "hermes"
+      },
+      "capacites": [
+        "tool_call",
+        "subagents",
+        "webhook"
+      ],
+      "surfaces": [
+        "mcp",
+        "a2a"
+      ],
+      "statut": "mesure",
+      "mesure_le": "2026-08-28",
+      "note": "Corrige par sondage 2026-08-23 : la cible declaree (\"Hermes Desktop Native\") etait un libelle, pas un identifiant invocable. `hermes` (venv Python, C:/Users/amado/AppData/Local/hermes/hermes-agent/venv/Scripts/hermes) est deja sur le PATH et repond a --version. Mode Bot cible pour les agents Kernel migres depuis Multica. QG de reproductibilite inter-domaines (voir 2026-08-24 : Bot Mode = canal A2A pour la collaboration Justice League avant Buzz/Multica/Paperclip/T3 Code). | sonde 2026-08-28 : joignable, Hermes Agent v0.20.5 (2026.8.19) · upstream baa344de (present des deux cotes (Windows: C:\\Users\\amado\\AppData\\Local\\hermes\\bin\\hermes.exe | WSL: /home/amdkn7/.local/bin/hermes))",
+      "domaine": "02_Operations",
+      "lancable_par": [
+        "ori"
+      ],
+      "sonde": {
+        "joignable": true,
+        "chemin": "C:\\Users\\amado\\AppData\\Local\\hermes\\bin\\hermes.exe",
+        "motif": "present des deux cotes (Windows: C:\\Users\\amado\\AppData\\Local\\hermes\\bin\\hermes.exe | WSL: /home/amdkn7/.local/bin/hermes)",
+        "version": "Hermes Agent v0.20.5 (2026.8.19) · upstream baa344de",
+        "sonde_le": "2026-08-28",
+        "cote": "les-deux",
+        "windows": {
+          "joignable": true,
+          "chemin": "C:\\Users\\amado\\AppData\\Local\\hermes\\bin\\hermes.exe",
+          "motif": "trouve dans C:\\Users\\amado\\AppData\\Local\\hermes\\bin"
+        },
+        "wsl": {
+          "joignable": true,
+          "chemin": "/home/amdkn7/.local/bin/hermes",
+          "motif": "trouve dans WSL Ubuntu-24.04"
+        }
+      }
+    },
+    {
+      "id": "multica",
+      "libelle": "Multica",
+      "invocation": {
+        "type": "http",
+        "cible": "https://api.multica.ai"
+      },
+      "capacites": [
+        "subagents",
+        "cron",
+        "webhook"
+      ],
+      "surfaces": [
+        "rest"
+      ],
+      "statut": "mesure",
+      "mesure_le": "2026-08-28",
+      "note": "57 agents vivants dans le workspace, couches A1/A2/A3 + S. La couche B a ete archivee volontairement. | sonde 2026-08-28 : joignable (hote repond, code 404)",
+      "sonde": {
+        "joignable": true,
+        "chemin": "https://api.multica.ai",
+        "motif": "hote repond, code 404",
+        "version": null,
+        "sonde_le": "2026-08-28",
+        "cote": "reseau",
+        "windows": {
+          "joignable": true,
+          "chemin": "https://api.multica.ai",
+          "motif": "hote repond, code 404"
+        },
+        "wsl": {
+          "joignable": null,
+          "chemin": null,
+          "motif": "type http, hors frontiere WSL"
+        }
+      }
+    },
+    {
+      "id": "openclaw",
+      "libelle": "OpenClaw",
+      "invocation": {
+        "type": "cli",
+        "cible": "openclaw"
+      },
+      "capacites": [
+        "tool_call",
+        "file_edit",
+        "shell"
+      ],
+      "surfaces": [
+        "mcp"
+      ],
+      "statut": "mesure",
+      "mesure_le": "2026-08-28",
+      "note": "OpenClaw 2026.5.18, detecte par omniroute status. | sonde 2026-08-28 : joignable (present des deux cotes (Windows: C:\\Users\\amado\\AppData\\Roaming\\npm\\openclaw | WSL: /mnt/c/Users/amado/AppData/Roaming/npm/openclaw))",
+      "sonde": {
+        "joignable": true,
+        "chemin": "C:\\Users\\amado\\AppData\\Roaming\\npm\\openclaw",
+        "motif": "present des deux cotes (Windows: C:\\Users\\amado\\AppData\\Roaming\\npm\\openclaw | WSL: /mnt/c/Users/amado/AppData/Roaming/npm/openclaw)",
+        "version": null,
+        "sonde_le": "2026-08-28",
+        "cote": "les-deux",
+        "windows": {
+          "joignable": true,
+          "chemin": "C:\\Users\\amado\\AppData\\Roaming\\npm\\openclaw",
+          "motif": "trouve dans C:\\Users\\amado\\AppData\\Roaming\\npm"
+        },
+        "wsl": {
+          "joignable": true,
+          "chemin": "/mnt/c/Users/amado/AppData/Roaming/npm/openclaw",
+          "motif": "trouve dans WSL Ubuntu-24.04"
+        }
+      }
+    },
+    {
+      "id": "antigravity",
+      "libelle": "Antigravity",
+      "invocation": {
+        "type": "desktop",
+        "cible": "antigravity"
+      },
+      "capacites": [
+        "tool_call",
+        "file_edit",
+        "browser"
+      ],
+      "surfaces": [
+        "mcp"
+      ],
+      "statut": "suppose",
+      "mesure_le": null,
+      "note": " | sonde 2026-08-28 : introuvable (introuvable des deux cotes (Windows: absent du PATH et des repertoires connus (66 repertoires sondes) | WSL: absent du PATH de WSL Ubuntu-24.04))",
+      "sonde": {
+        "joignable": false,
+        "chemin": null,
+        "motif": "introuvable des deux cotes (Windows: absent du PATH et des repertoires connus (66 repertoires sondes) | WSL: absent du PATH de WSL Ubuntu-24.04)",
+        "version": null,
+        "sonde_le": "2026-08-28",
+        "cote": "aucun",
+        "windows": {
+          "joignable": false,
+          "chemin": null,
+          "motif": "absent du PATH et des repertoires connus (66 repertoires sondes)"
+        },
+        "wsl": {
+          "joignable": false,
+          "chemin": null,
+          "motif": "absent du PATH de WSL Ubuntu-24.04"
+        }
+      }
+    },
+    {
+      "id": "cursor",
+      "libelle": "Cursor",
+      "invocation": {
+        "type": "desktop",
+        "cible": "cursor"
+      },
+      "capacites": [
+        "tool_call",
+        "file_edit",
+        "shell"
+      ],
+      "surfaces": [
+        "mcp",
+        "acp"
+      ],
+      "statut": "suppose",
+      "mesure_le": null,
+      "note": " | sonde 2026-08-28 : introuvable (introuvable des deux cotes (Windows: absent du PATH et des repertoires connus (66 repertoires sondes) | WSL: absent du PATH de WSL Ubuntu-24.04))",
+      "sonde": {
+        "joignable": false,
+        "chemin": null,
+        "motif": "introuvable des deux cotes (Windows: absent du PATH et des repertoires connus (66 repertoires sondes) | WSL: absent du PATH de WSL Ubuntu-24.04)",
+        "version": null,
+        "sonde_le": "2026-08-28",
+        "cote": "aucun",
+        "windows": {
+          "joignable": false,
+          "chemin": null,
+          "motif": "absent du PATH et des repertoires connus (66 repertoires sondes)"
+        },
+        "wsl": {
+          "joignable": false,
+          "chemin": null,
+          "motif": "absent du PATH de WSL Ubuntu-24.04"
+        }
+      }
+    },
+    {
+      "id": "open-code",
+      "libelle": "OpenCode",
+      "invocation": {
+        "type": "cli",
+        "cible": "opencode"
+      },
+      "capacites": [
+        "tool_call",
+        "file_edit",
+        "shell"
+      ],
+      "surfaces": [
+        "mcp",
+        "acp"
+      ],
+      "statut": "mesure",
+      "mesure_le": "2026-08-28",
+      "note": "Non installe au 2026-08-21 (omniroute status). | sonde 2026-08-28 : joignable, 1.18.21 (trouve dans WSL Ubuntu-24.04)",
+      "domaine": "04_Sales_Cognition",
+      "lancable_par": [
+        "ori"
+      ],
+      "sonde": {
+        "joignable": true,
+        "chemin": "/home/amdkn7/.local/bin/opencode",
+        "motif": "trouve dans WSL Ubuntu-24.04",
+        "version": "1.18.21",
+        "sonde_le": "2026-08-28",
+        "cote": "wsl",
+        "windows": {
+          "joignable": false,
+          "chemin": null,
+          "motif": "absent du PATH et des repertoires connus (66 repertoires sondes)"
+        },
+        "wsl": {
+          "joignable": true,
+          "chemin": "/home/amdkn7/.local/bin/opencode",
+          "motif": "trouve dans WSL Ubuntu-24.04"
+        }
+      }
+    },
+    {
+      "id": "buzz",
+      "libelle": "Buzz",
+      "invocation": {
+        "type": "cli",
+        "cible": "buzz"
+      },
+      "capacites": [
+        "subagents",
+        "voice"
+      ],
+      "surfaces": [
+        "rest"
+      ],
+      "statut": "mesure",
+      "mesure_le": "2026-08-28",
+      "note": "Corrige par sondage 2026-08-23 : la cible declaree (\".buzz\", un dossier de donnees, pas un binaire) a ete remplacee par `buzz`, le vrai executable trouve dans C:/Users/amado/bin/buzz.cmd (deja sur le PATH, repond aux appels). | sonde 2026-08-28 : joignable (trouve dans C:\\Users\\amado\\bin)",
+      "sonde": {
+        "joignable": true,
+        "chemin": "C:\\Users\\amado\\bin\\buzz.cmd",
+        "motif": "trouve dans C:\\Users\\amado\\bin",
+        "version": null,
+        "sonde_le": "2026-08-28",
+        "cote": "windows",
+        "windows": {
+          "joignable": true,
+          "chemin": "C:\\Users\\amado\\bin\\buzz.cmd",
+          "motif": "trouve dans C:\\Users\\amado\\bin"
+        },
+        "wsl": {
+          "joignable": false,
+          "chemin": null,
+          "motif": "absent du PATH de WSL Ubuntu-24.04"
+        }
+      }
+    },
+    {
+      "id": "prime-agent",
+      "libelle": "Prime Agent",
+      "invocation": {
+        "type": "sdk",
+        "cible": "prime-agent"
+      },
+      "capacites": [
+        "tool_call",
+        "subagents"
+      ],
+      "surfaces": [
+        "a2a"
+      ],
+      "statut": "mesure",
+      "mesure_le": "2026-08-28",
+      "note": "Non mesure. Descripteur pose pour que le bridge le route des qu'il est branche. PISTE NON VERIFIEE (apercu IA Google, 2026-08-24, pas la doc primaire) : Prime Agent aurait un mode `--mode acp` pour parler Agent Client Protocol en JSON-RPC 2.0 sur stdio, ce qui le rendrait enregistrable comme agent ACP custom dans Omnigent. A confirmer contre la doc officielle Prime Intellect avant d'agir dessus — ne pas ajouter `acp` a `surfaces` tant que non mesure. | sonde 2026-08-28 : joignable (trouve dans WSL Ubuntu-24.04)",
+      "domaine": "01_RH_Meta_Gouvernance",
+      "lancable_par": [
+        "ori"
+      ],
+      "sonde": {
+        "joignable": true,
+        "chemin": "/home/amdkn7/.local/bin/prime-agent",
+        "motif": "trouve dans WSL Ubuntu-24.04",
+        "version": null,
+        "sonde_le": "2026-08-28",
+        "cote": "wsl",
+        "windows": {
+          "joignable": false,
+          "chemin": null,
+          "motif": "type sdk, non sondable cote Windows"
+        },
+        "wsl": {
+          "joignable": true,
+          "chemin": "/home/amdkn7/.local/bin/prime-agent",
+          "motif": "trouve dans WSL Ubuntu-24.04"
+        }
+      }
+    },
+    {
+      "id": "j-code",
+      "libelle": "J Code",
+      "invocation": {
+        "type": "cli",
+        "cible": "jcode"
+      },
+      "capacites": [
+        "tool_call",
+        "file_edit"
+      ],
+      "surfaces": [
+        "mcp"
+      ],
+      "statut": "suppose",
+      "mesure_le": null,
+      "note": " | sonde 2026-08-28 : introuvable (introuvable des deux cotes (Windows: absent du PATH et des repertoires connus (66 repertoires sondes) | WSL: absent du PATH de WSL Ubuntu-24.04))",
+      "sonde": {
+        "joignable": false,
+        "chemin": null,
+        "motif": "introuvable des deux cotes (Windows: absent du PATH et des repertoires connus (66 repertoires sondes) | WSL: absent du PATH de WSL Ubuntu-24.04)",
+        "version": null,
+        "sonde_le": "2026-08-28",
+        "cote": "aucun",
+        "windows": {
+          "joignable": false,
+          "chemin": null,
+          "motif": "absent du PATH et des repertoires connus (66 repertoires sondes)"
+        },
+        "wsl": {
+          "joignable": false,
+          "chemin": null,
+          "motif": "absent du PATH de WSL Ubuntu-24.04"
+        }
+      }
+    },
+    {
+      "id": "d-code",
+      "libelle": "D Code",
+      "invocation": {
+        "type": "cli",
+        "cible": "dcode"
+      },
+      "capacites": [
+        "tool_call",
+        "file_edit"
+      ],
+      "surfaces": [
+        "mcp"
+      ],
+      "statut": "suppose",
+      "mesure_le": null,
+      "note": " | sonde 2026-08-28 : introuvable (introuvable des deux cotes (Windows: absent du PATH et des repertoires connus (66 repertoires sondes) | WSL: absent du PATH de WSL Ubuntu-24.04))",
+      "sonde": {
+        "joignable": false,
+        "chemin": null,
+        "motif": "introuvable des deux cotes (Windows: absent du PATH et des repertoires connus (66 repertoires sondes) | WSL: absent du PATH de WSL Ubuntu-24.04)",
+        "version": null,
+        "sonde_le": "2026-08-28",
+        "cote": "aucun",
+        "windows": {
+          "joignable": false,
+          "chemin": null,
+          "motif": "absent du PATH et des repertoires connus (66 repertoires sondes)"
+        },
+        "wsl": {
+          "joignable": false,
+          "chemin": null,
+          "motif": "absent du PATH de WSL Ubuntu-24.04"
+        }
+      }
+    },
+    {
+      "id": "paperclip",
+      "libelle": "Paperclip",
+      "invocation": {
+        "type": "sdk",
+        "cible": "paperclip"
+      },
+      "capacites": [
+        "tool_call"
+      ],
+      "surfaces": [
+        "mcp"
+      ],
+      "statut": "suppose",
+      "mesure_le": null,
+      "note": " | sonde 2026-08-28 : type sdk, non sondable en ligne de commande",
+      "sonde": {
+        "joignable": null,
+        "chemin": null,
+        "motif": "type sdk, non sondable en ligne de commande",
+        "version": null,
+        "sonde_le": "2026-08-28",
+        "cote": "aucun",
+        "windows": {
+          "joignable": null,
+          "chemin": null,
+          "motif": "type sdk"
+        },
+        "wsl": {
+          "joignable": false,
+          "chemin": null,
+          "motif": "absent du PATH de WSL Ubuntu-24.04"
+        }
+      }
+    },
+    {
+      "id": "ori",
+      "libelle": "Ori Harness (OpenRouter)",
+      "invocation": {
+        "type": "cli",
+        "cible": "ori"
+      },
+      "capacites": [
+        "tool_call",
+        "file_edit",
+        "shell",
+        "subagents",
+        "streaming",
+        "long_context"
+      ],
+      "surfaces": [
+        "mcp",
+        "rest"
+      ],
+      "statut": "mesure",
+      "mesure_le": "2026-08-28",
+      "routeur": true,
+      "couvre": [
+        "claude-code",
+        "codex",
+        "dsh",
+        "grok",
+        "hermes-agent",
+        "open-code",
+        "pi",
+        "prime-agent"
+      ],
+      "ne_couvre_pas": [
+        "multica",
+        "buzz",
+        "openbot",
+        "paperclip",
+        "ori"
+      ],
+      "deploiement": [
+        "vps",
+        "local"
+      ],
+      "note": "DEFAUT. Lance le CLI d agent deja utilise, sur OpenRouter, avec une seule facture et des garde-fous d organisation. `ori claude`, `ori codex`, `ori dsh`, `ori grok`, `ori hermes`, `ori opencode`, `ori pi`, `ori prime-agent`. Installation : curl -fsSL https://openrouter.ai/labs/ori/install.sh | bash. Ne couvre PAS les harnais de niche : Multica, Buzz, OpenBot restent joignables en direct. MATRICE META TRIPTYQUE HARNESS (decidee 2026-08-24) : Ori = surface d audit et d interaction humaine ; Omnigent = runtime, priorite au systeme d evenements, non-interactif ; OpenViking = memoire. Ori n a AUCUN mode serveur (verifie contre la doc officielle OpenRouter) — et ce n est pas un manque, ce n est pas son role : c est un outil de session (local ou VPS via SSH, humain au clavier), pas un daemon. Le runtime non-interactif du systeme d evenements revient a Omnigent, pas a Ori. Le champ deploiement ci-dessous reflete ce partage. | sonde 2026-08-28 : joignable (present des deux cotes (Windows: C:\\Users\\amado\\bin\\ori.cmd | WSL: /home/amdkn7/.local/bin/ori))",
+      "domaine": "00_Meta_Summers",
+      "sonde": {
+        "joignable": true,
+        "chemin": "C:\\Users\\amado\\bin\\ori.cmd",
+        "motif": "present des deux cotes (Windows: C:\\Users\\amado\\bin\\ori.cmd | WSL: /home/amdkn7/.local/bin/ori)",
+        "version": null,
+        "sonde_le": "2026-08-28",
+        "cote": "les-deux",
+        "windows": {
+          "joignable": true,
+          "chemin": "C:\\Users\\amado\\bin\\ori.cmd",
+          "motif": "trouve dans C:\\Users\\amado\\bin"
+        },
+        "wsl": {
+          "joignable": true,
+          "chemin": "/home/amdkn7/.local/bin/ori",
+          "motif": "trouve dans WSL Ubuntu-24.04"
+        }
+      }
+    },
+    {
+      "id": "dsh",
+      "libelle": "DeepSeek Harness",
+      "invocation": {
+        "type": "cli",
+        "cible": "dsh"
+      },
+      "capacites": [
+        "tool_call",
+        "file_edit",
+        "shell"
+      ],
+      "surfaces": [
+        "mcp"
+      ],
+      "statut": "mesure",
+      "mesure_le": "2026-08-28",
+      "lancable_par": [
+        "ori"
+      ],
+      "note": "Bati sur Cordis. Tout y est greffon : adaptateur de modele, registre d outils, boucle d agent. PISTE NON VERIFIEE (apercu IA Google, 2026-08-24, pas la doc primaire) : DSH integrerait ACP via un plugin dedie (nom suppose : dsh-plugin-acp ou deepseek-harness-acp). A confirmer contre la doc Cordis/DSH avant d'agir dessus — ne pas ajouter `acp` a `surfaces` tant que non mesure. | sonde 2026-08-28 : joignable, 0.1.1-rc.2 (trouve dans WSL Ubuntu-24.04)",
+      "domaine": "05_People_Acquisition",
+      "sonde": {
+        "joignable": true,
+        "chemin": "/home/amdkn7/.local/bin/dsh",
+        "motif": "trouve dans WSL Ubuntu-24.04",
+        "version": "0.1.1-rc.2",
+        "sonde_le": "2026-08-28",
+        "cote": "wsl",
+        "windows": {
+          "joignable": false,
+          "chemin": null,
+          "motif": "absent du PATH et des repertoires connus (66 repertoires sondes)"
+        },
+        "wsl": {
+          "joignable": true,
+          "chemin": "/home/amdkn7/.local/bin/dsh",
+          "motif": "trouve dans WSL Ubuntu-24.04"
+        }
+      }
+    },
+    {
+      "id": "grok",
+      "libelle": "Grok Build",
+      "invocation": {
+        "type": "cli",
+        "cible": "grok"
+      },
+      "capacites": [
+        "tool_call",
+        "file_edit",
+        "shell"
+      ],
+      "surfaces": [
+        "mcp"
+      ],
+      "statut": "mesure",
+      "mesure_le": "2026-08-28",
+      "lancable_par": [
+        "ori"
+      ],
+      "note": " | sonde 2026-08-28 : joignable, grok 1.0.5 (5115b46bc9) (trouve dans WSL Ubuntu-24.04)",
+      "sonde": {
+        "joignable": true,
+        "chemin": "/home/amdkn7/.local/bin/grok",
+        "motif": "trouve dans WSL Ubuntu-24.04",
+        "version": "grok 1.0.5 (5115b46bc9)",
+        "sonde_le": "2026-08-28",
+        "cote": "wsl",
+        "windows": {
+          "joignable": false,
+          "chemin": null,
+          "motif": "absent du PATH et des repertoires connus (66 repertoires sondes)"
+        },
+        "wsl": {
+          "joignable": true,
+          "chemin": "/home/amdkn7/.local/bin/grok",
+          "motif": "trouve dans WSL Ubuntu-24.04"
+        }
+      }
+    },
+    {
+      "id": "pi",
+      "libelle": "Pi",
+      "invocation": {
+        "type": "cli",
+        "cible": "pi"
+      },
+      "capacites": [
+        "tool_call",
+        "file_edit"
+      ],
+      "surfaces": [
+        "mcp"
+      ],
+      "statut": "mesure",
+      "mesure_le": "2026-08-28",
+      "lancable_par": [
+        "ori"
+      ],
+      "note": "Cible historique de src/lib/tooling/adapters/harness.ts, qui genere son extension. | sonde 2026-08-28 : joignable (present des deux cotes (Windows: C:\\Users\\amado\\bin\\pi.cmd | WSL: /home/amdkn7/.local/bin/pi))",
+      "domaine": "08_Legal_Compliance",
+      "sonde": {
+        "joignable": true,
+        "chemin": "C:\\Users\\amado\\bin\\pi.cmd",
+        "motif": "present des deux cotes (Windows: C:\\Users\\amado\\bin\\pi.cmd | WSL: /home/amdkn7/.local/bin/pi)",
+        "version": null,
+        "sonde_le": "2026-08-28",
+        "cote": "les-deux",
+        "windows": {
+          "joignable": true,
+          "chemin": "C:\\Users\\amado\\bin\\pi.cmd",
+          "motif": "trouve dans C:\\Users\\amado\\bin"
+        },
+        "wsl": {
+          "joignable": true,
+          "chemin": "/home/amdkn7/.local/bin/pi",
+          "motif": "trouve dans WSL Ubuntu-24.04"
+        }
+      }
+    },
+    {
+      "id": "openbot",
+      "libelle": "Open Bot",
+      "invocation": {
+        "type": "http",
+        "cible": "openbot"
+      },
+      "capacites": [
+        "tool_call",
+        "webhook"
+      ],
+      "surfaces": [
+        "rest"
+      ],
+      "statut": "suppose",
+      "mesure_le": null,
+      "note": "Harnais de niche : hors couverture Ori. | sonde 2026-08-28 : introuvable (URL invalide : openbot)",
+      "sonde": {
+        "joignable": false,
+        "chemin": null,
+        "motif": "URL invalide : openbot",
+        "version": null,
+        "sonde_le": "2026-08-28",
+        "cote": "aucun",
+        "windows": {
+          "joignable": false,
+          "chemin": null,
+          "motif": "URL invalide : openbot"
+        },
+        "wsl": {
+          "joignable": null,
+          "chemin": null,
+          "motif": "type http, hors frontiere WSL"
+        }
+      }
+    }
+  ],
+  "$defaut": "ori"
+}
