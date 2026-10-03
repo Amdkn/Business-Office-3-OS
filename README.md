@@ -1,122 +1,70 @@
-# 🏢 Business Office 3 OS (A'Space / OMK)
+# Coach OS
 
-> **Système d'Exploitation Exécutif Trimodal & Jumeau Numérique d'Entreprise**  
-> Architecte & Propriétaire : Amadou Kone (`amdkn`)  
-> Dépôt : `https://github.com/Amdkn/Business-Office-3-OS`
+> **Entreprise** du Business OS · arborescence engendrée le 2026-08-02
+> Canon : `ADR-CANON-001` — 8 B2 + 8 squads B3 + **53 B3**.
 
----
+Coach OS échoue le jour où le coach devient le produit. Toute cette structure n'existe que
+pour empêcher ça : chaque rang produit un seul artefact, et jamais celui du rang voisin.
 
-## 1. Vision & Architecture Trimodale
+## L'organigramme
 
-**Business Office 3 OS** résout la fracture entre la puissance d'un environnement de travail complet sur grand écran, l'accessibilité immédiate d'un tableau de bord de gestion clair et la rapidité d'une télécommande exécutive sur smartphone.
+**Summers, CEO** — 8 VP (héros DC) — 53 techniciens (squads Marvel).
 
-Le système fusionne 3 paradigmes en **une seule application unifiée**, partageant le même noyau de données, le même bus d'événements et les mêmes modèles métiers :
+| # | Domaine | VP | Squad | Techniciens | État |
+|---|---|---|---|---|---|
+| 1 | RH & Méta Gouvernance | Green Lantern | X-Men | 8 | actif |
+| 2 | Opérations en Loops | Batman | Fantastic Four | 4 | actif |
+| 3 | Productization des Besoins | Flash | Avengers | 7 | actif |
+| 4 | Sales & Cognition | Martian Manhunter | Illuminati | 6 | actif |
+| 5 | People & Brand | Superman | Guardians | 6 | actif |
+| 6 | Finance & ROI | Wonder Woman | Thunderbolts | 6 | actif |
+| 7 | R&D & IT | Cyborg | Kang Dynasty | 6 | actif |
+| 8 | Legal & Compliance | Aquaman | Eternals | 10 | dormant |
+
+`ORG.json` fait foi sur les rattachements.
+
+## La cascade E-Myth
+
+| Rang | Qui | Rôle E-Myth | Artefact | Cycle |
+|---|---|---|---|---|
+| **B1** | Summers | Entrepreneur | `ROCKS.md` | 1 rock / mois, 3 / 12WY |
+| **B2** | les 8 VP | Manager | `SPRINTS.md` | 4 sprints / mois |
+| **B3** | les 53 techniciens | Technicien | `SCRUMS.md` | 5 scrums / semaine |
+
+Un rang ne produit jamais l'artefact du rang voisin. Ce qui remonte n'est jamais une
+décision : seulement un fait — un sprint non tenu avec son motif.
+
+**Amont** — la direction descend de Life OS : A1 Beth·Morty `H+3 ans` → A2 les six
+frameworks `H+1 an` → A3 les officiers `12WY` → **le rock mensuel de Summers**.
+
+## Arborescence
 
 ```
-┌────────────────────────────────────────────────────────────────────────────────────────┐
-│                                BUSINESS OFFICE 3 OS                                    │
-├────────────────────────────────────────────────────────────────────────────────────────┤
-│                                                                                        │
-│  [ VUE 1 : PRO WEB DESKTOP OS ]                                                        │
-│  Gestionnaire de fenêtres multi-tâches (Draggable, Resizable, Dock, TopBar)            │
-│  13 applications métiers complètes (Finance, Clients, Sales, Ops, Legal, R&D...)       │
-│                                                                                        │
-│  ▲                                      ▲                                              │
-│  │ (Toggle TopBar / CMS Rideau)         │ (Responsive < 768px / Mode Télécommande)     │
-│  ▼                                      ▼                                              │
-│                                                                                        │
-│  [ VUE 2 : DIGITAL GARDEN SAAS OS ]    [ VUE 3 : MOBILE OS EDGE CLIENT ]               │
-│  Dashboard épuré & accessible          Interface smartphone ultra-rapide               │
-│  Cultivate · Nurture · Bloom · Roots   Springboard, Dynamic Island, Gestures, Haptics  │
-│  Board of Directors + Chat Jerry       Télécommande exécutive & widgets nomades        │
-│                                                                                        │
-├────────────────────────────────────────────────────────────────────────────────────────┤
-│                      COUCHE DE DONNÉES & NOYAU COMMUNS                                 │
-│  • Zustand Global Stores (Shell, Windows, Notifications)                               │
-│  • Référentiel unifié (clientsRepo, sopsRepo, documentsRepo, invoicesRepo)             │
-│  • Supabase Multi-Tenant (omk_saas.*) / LocalStorage Fallback                         │
-│  • FastMCP & Agentic Swarm Adapters                                                    │
-└────────────────────────────────────────────────────────────────────────────────────────┘
+coach-os/
+  ORG.json                    l'organigramme, fait foi
+  00_Summers_CEO/             B1 — ROCKS.md + vision, dashboard, accords-cadres
+  04_Business_Domains/        les 8 VP
+    0N_<Domaine>_<VP>_<Squad>/
+      VP_AGENT.md  VP_SOUL.md  SPRINTS.md
+      squad/
+        NN_<Technicien>_<Charge>/   AGENT.md  SOUL.md  SCRUMS.md
+  09_Blueprints/              01-SDD · 02-ADR · 03-PRD · 04-DDD
+  02_Meta_Factory/            ce qui fabrique Coach OS
 ```
 
----
+## Deux domaines à statut particulier
 
-## 2. Les 3 Vues en Détail
+**7 · R&D & IT (Cyborg)** porte le pipeline de veille depuis le pivot IT→R&D de la spec W40
+(2026-07-13) : guides YouTube → distillation 8 domaines → cycle Last30days → **au plus trois**
+améliorations actionnables par mois. La distillation vit dans
+`20_Life_OS/22_Wheel_Discovery/LD01_Business_Book/01_Guides_Business/`.
 
-### 🖥️ Vue 1 : Pro Web Desktop OS
-* Interface type bureau virtuel (inspirée de macOS et du shell A'Space Life OS).
-* Fenêtres autonomes redimensionnables, minimisables, avec mémorisation de disposition.
-* Dock d'applications persistant et barre supérieure (`TopBar`) avec statut système et heure.
+**8 · Legal & Compliance (Aquaman)** est **dormant**. Il s'active au dépôt du premier fichier
+dans `00_Summers_CEO/03_Master_Agreements/` — c'est-à-dire au premier contrat de coaching
+signé, et pas avant.
 
-### 🌱 Vue 2 : Digital Garden SaaS OS
-* Overlay exécutif déployable depuis la barre du haut (`TopBar > Digital Garden`).
-* Vue simplifiée et reposante conçue pour réduire la surcharge cognitive du bureau virtuel.
-* Structure en 4 piliers : **Cultivate** (Dashboard, Finance, People), **Nurture** (Tasks, Clients, Knowledge, Documents, SOPs), **Bloom** (Sales, Product, Filiales), **Roots** (Legal, IT, Settings).
-* Conseil d'administration virtuel (`Board of Directors`) avec Jerry, Superman, Batman et Flash.
+## Cette arborescence s'engendre
 
-### 📱 Vue 3 : Mobile OS Edge Client (En cours d'intégration via Jules)
-* Portée depuis `https://github.com/Amdkn/The-OMK-Mobile-Back-Office`.
-* **Vue responsive par défaut sur mobile** : activée automatiquement sur les écrans de largeur inférieure à `768px` ou via le simulateur intégré.
-* Dynamic Island interactive (alertes, temps réel, KPI audio/voix), Springboard à icônes réorganisables, haptique tactile, et navigation par gestes.
-
----
-
-## 3. Mission & Dossier de Délégation pour Jules (Google)
-
-La feuille de route complète pour l'intégration du **Mobile OS** par l'agent **Jules** est consignée dans :
-👉 [`delegation-a-jules/PRD-Business-Office-3-OS-Mobile-Integration.md`](./delegation-a-jules/PRD-Business-Office-3-OS-Mobile-Integration.md)  
-👉 [`delegation-a-jules/README.md`](./delegation-a-jules/README.md)
-
----
-
-## 4. Stack Technique
-
-- **Runtime & Build :** Vite 8 + Bun / Node
-- **Framework :** React 19 + TypeScript (Typage 100% strict)
-- **Gestion d'État :** Zustand + Context Providers
-- **Design System :** Tailwind CSS v4, Lucide Icons, Glassmorphism
-- **Backend & Données :** Supabase (`omk_saas` schema) avec fallback dev LocalStorage
-
----
-
-## 5. Démarrage Rapide
-
-```bash
-# Installation des dépendances
-bun install
-
-# Lancement du serveur de développement (Port 5174)
-bun run dev --port 5174
-
-# Validation stricte TypeScript (0 erreur tolérée)
-bun run tsc -p tsconfig.app.json --noEmit
-```
-
-
-Runs, in order: `typecheck` (`tsc -b` — the only command that actually
-type-checks; `npx tsc --noEmit -p tsconfig.json` alone is a silent
-false-positive), `typecheck:api`, `test` (vitest with `--pool=threads`),
-`build`, and the four runtime benches (`_runtime/kernel.mjs`,
-`_runtime/bridge/{bridge,adapters,rbac-test}.mjs`). This is exactly what
-[`.github/workflows/ci.yml`](./.github/workflows/ci.yml) runs on every push
-and pull request.
-
-## Docs
-
-- [`INSTALL.md`](./INSTALL.md) — full local setup, verification, and known traps
-- [`MIGRATION_SUPABASE.md`](./MIGRATION_SUPABASE.md) — data-layer migration plan, 3-stage tenancy model
-- [`PHASE0_RECEIPT.md`](./PHASE0_RECEIPT.md) — Supabase Phase 0 provisioning receipt
-
-
-<!-- ASPACE-WORLD-FEDERATION:BEGIN -->
-## A'Space World Federation
-
-This repository is a sovereign world/member of one A'Space V3 federation, not a monorepo subtree.
-
-- **Astra** — [Amdkn/Aspace_OS_V3](https://github.com/Amdkn/Aspace_OS_V3): unified system / Design-of-Design / registry.
-- **Sol** — [Amdkn/Agent-OS-Desktop](https://github.com/Amdkn/Agent-OS-Desktop): Agent OS interface & observability; local desktop `127.0.0.1:5555`.
-- **Terra** — [Amdkn/Life-OS-2026](https://github.com/Amdkn/Life-OS-2026): Life OS 2026.
-- **Luna** — Business federation: [BusinessOS](https://github.com/Amdkn/BusinessOS), [Business-Office-3-OS](https://github.com/Amdkn/Business-Office-3-OS), [01-OMK-Business-OS](https://github.com/Amdkn/01-OMK-Business-OS), [The-OMK-Office1.0-JaaS](https://github.com/Amdkn/The-OMK-Office1.0-JaaS), [Mobile Back Office](https://github.com/Amdkn/The-OMK-Mobile-Back-Office), [OMK Desktop Web OS](https://github.com/omk-services/OMK-DESKTOP-WEB-OS), [OMK SaaS OS](https://github.com/omk-services/00-omk-saas-os), and the private OMK landing repository.
-
-Filesystem junctions/symlinks are navigation projections only. Every member keeps its own Git history, remote, CI and release boundary. Canonical location mapping lives in Astra's `ASPACE_WORKSPACE_REGISTRY.json`.
-<!-- ASPACE-WORLD-FEDERATION:END -->
+Elle n'est pas écrite à la main. Le moule est dans `02_Meta_Factory/`. Pour changer Coach OS,
+on change le moule et on relance — modifier un fichier engendré à la main, c'est le perdre à
+la prochaine passe.
