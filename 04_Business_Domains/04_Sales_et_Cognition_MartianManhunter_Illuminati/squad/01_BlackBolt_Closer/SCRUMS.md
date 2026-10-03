@@ -19,7 +19,7 @@ Vide = aucun scrum. Un scrum sans sprint est du geste sans cause.
 | jeu | | | |
 | ven | | | |
 
-Une action est exécutable si elle commence par un verbe et qu'un tiers pourrait la refaire.
+Une action est exécutable si elle commence par un verbe. Elle peut déléguer son exécution déterministe à un instrument (factory/script) sous mon contrôle.
 Une preuve est un chemin de fichier, une sortie de commande, ou un nombre.
 
 ## Ce que je remonte

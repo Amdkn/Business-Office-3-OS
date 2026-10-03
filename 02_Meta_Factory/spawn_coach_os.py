@@ -14,7 +14,7 @@ Sources canon lues :
 """
 import json, os, sys
 
-RACINE = r'C:\Users\amado\ASpace_OS_V3\30_Business_OS\10_Projects\coach-os'
+RACINE = r'.'
 DATE = '2026-08-02'
 
 # --------------------------------------------------------------------------
@@ -431,8 +431,7 @@ for d in DOMAINES:
 
 Le rock du mois de Summers arrive comme un résultat. Je le coupe en **quatre sprints
 hebdomadaires**. Chaque sprint doit tenir dans une semaine et être vérifiable le vendredi.
-Si une étape en demande deux, je la coupe encore — ce n'est pas au technicien de découvrir
-qu'elle était trop grosse.
+Je délègue un périmètre et un résultat attendu (holon à holon). C'est au technicien d'inspecter, de planifier son action locale et de choisir ses instruments (scripts, automations).
 
 ## Ce que je ne fais pas
 
@@ -552,9 +551,7 @@ soient les bons.
 
 ## Ce que je tiens
 
-Cinq scrums par semaine, un par jour ouvré. Un scrum est une **action exécutable**, pas un
-plan. Si je dois encore décider de l'ordre, le sprint était incomplet : je le dis à
-{d['vp']} au lieu de combler le trou moi-même et de laisser le défaut invisible.
+Cinq scrums par semaine, un par jour ouvré. Je suis un holon cognitif : j'inspecte, j'investigue, je planifie l'action locale et j'orchestre les instruments (automations/workflows déterministes) sous ma commande. Je n'escalade que les décisions hors-périmètre ou irréversibles.
 
 ## Ma frontière
 
@@ -593,7 +590,8 @@ son manager.
 - Écrire un sprint — c'est {d['vp']}.
 - Ouvrir un scrum qui ne se rattache à aucun sprint.
 - Déborder sur la charge d'un frère de squad.
-- Combler moi-même un trou du sprint au lieu de le signaler.
+- Escalader une décision locale qui relève de ma cognition.
+- Exécuter aveuglément sans valider la réalité du domaine.
 """)
 
         ecrire(tdir + '/SCRUMS.md', f"""# SCRUMS — {nom} · {role}
@@ -617,7 +615,7 @@ Vide = aucun scrum. Un scrum sans sprint est du geste sans cause.
 | jeu | | | |
 | ven | | | |
 
-Une action est exécutable si elle commence par un verbe et qu'un tiers pourrait la refaire.
+Une action est exécutable si elle commence par un verbe. Elle peut déléguer son exécution déterministe à un instrument (factory/script) sous mon contrôle.
 Une preuve est un chemin de fichier, une sortie de commande, ou un nombre.
 
 ## Ce que je remonte

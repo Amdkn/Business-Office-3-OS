@@ -668,14 +668,5 @@
     "b1": 1,
     "b2": 8,
     "b3": 53
-  },
-  "paperclip": {
-    "companyId": "1c6e1a3b-7cc0-49ec-8de4-a501e219f37c",
-    "companyName": "Coach OS",
-    "adapterType": "claude_local",
-    "environmentId": "9fa96211-3e29-41f6-979c-2ce9630da451",
-    "modele": "MiniMax-M3[1m]",
-    "agents": 62,
-    "plafond_parallelisme": "2-3 agents claude_local simultanes (mesure 2026-08-02)"
   }
 }

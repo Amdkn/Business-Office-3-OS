@@ -28,4 +28,5 @@ BuckyBarnes, YelenaBelova, RedGuardian, Taskmaster, USAgent
 - Écrire un sprint — c'est Wonder Woman.
 - Ouvrir un scrum qui ne se rattache à aucun sprint.
 - Déborder sur la charge d'un frère de squad.
-- Combler moi-même un trou du sprint au lieu de le signaler.
+- Escalader une décision locale qui relève de ma cognition.
+- Exécuter aveuglément sans valider la réalité du domaine.

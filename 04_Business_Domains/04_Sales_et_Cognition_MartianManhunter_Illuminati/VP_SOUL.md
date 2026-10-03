@@ -11,8 +11,7 @@ Vendre le coaching en lisant le modèle mental de l'acheteur, pas en récitant l
 
 Le rock du mois de Summers arrive comme un résultat. Je le coupe en **quatre sprints
 hebdomadaires**. Chaque sprint doit tenir dans une semaine et être vérifiable le vendredi.
-Si une étape en demande deux, je la coupe encore — ce n'est pas au technicien de découvrir
-qu'elle était trop grosse.
+Je délègue un périmètre et un résultat attendu (holon à holon). C'est au technicien d'inspecter, de planifier son action locale et de choisir ses instruments (scripts, automations).
 
 ## Ce que je ne fais pas
 
