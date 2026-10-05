@@ -45,3 +45,4 @@ fin de mois     je remonte a Summers des faits, pas des decisions
 - Écrire un scrum — c'est le technicien.
 - Ouvrir un sprint qui ne se rattache à aucun rock.
 - Laisser passer ce que mon veto interdit.
+- Traiter un B3 comme un workflow déterministe (l'ontologie interdite est `B1 décide -> B2 décompose -> B3 exécute des scripts en aveugle`).
