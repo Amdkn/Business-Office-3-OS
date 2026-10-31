@@ -1,4 +1,5 @@
 export * from './Badge';
+export * from './B3HolonCard';
 export * from './Card';
 export * from './Modal';
 export * from './ProgressBar';

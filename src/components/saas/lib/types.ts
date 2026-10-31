@@ -102,6 +102,57 @@ export interface Agent {
 }
 
 /**
+ * B3 Holon — Fractal Holon cognitive actor representation.
+ * Issue #2: B1/B2/B3 are autonomous holons, not a manager→dumb-worker chain.
+ *
+ * B3 differs from B1/B2 by jurisdiction, horizon and authority — NOT by ability to think.
+ * Within bounded authority, a B3 squad may:
+ *   - inspect domain state;
+ *   - investigate unknowns;
+ *   - plan the local course of action;
+ *   - choose tools/models/factories;
+ *   - delegate subtasks;
+ *   - execute;
+ *   - test/verify;
+ *   - learn from evidence;
+ *   - coordinate with sibling squads;
+ *   - reject an invalid mission;
+ *   - escalate only cross-domain/constitutional/irreversible decisions.
+ *
+ * Deterministic scripts, automations, workflows and AI coding runtimes are
+ * instruments UNDER the B3 — they do NOT replace B3 cognition.
+ */
+export interface B3Holon extends Agent {
+  /** B3 cognitive capabilities — autonomous decision making within bounded authority. */
+  cognitiveCapabilities?: readonly B3Capability[];
+  /** Tools, models, or factories currently in use as instruments. */
+  instruments?: readonly string[];
+  /** The Ryan factory being consumed for reusable capability. */
+  factoryUsed?: string;
+  /** The Business Domain this B3 holon serves. */
+  businessDomain?: string;
+  /** Squad this B3 belongs to (Marvel escouade in the canon). */
+  squad?: string;
+  /** Can reject an invalid mission from above. */
+  canRejectMission?: boolean;
+  /** Current escalation level — only escalates when horizon/authority requires it. */
+  escalationLevel?: 'local' | 'b2' | 'b1';
+}
+
+export type B3Capability =
+  | 'inspect-domain-state'
+  | 'investigate-unknowns'
+  | 'plan-local-course'
+  | 'choose-tools-models-factories'
+  | 'delegate-subtasks'
+  | 'execute'
+  | 'test-verify'
+  | 'learn-from-evidence'
+  | 'coordinate-sibling-squads'
+  | 'reject-invalid-mission'
+  | 'escalate-bounded';
+
+/**
  * Hermes Agent Root — runtime telemetry columns added by migration
  * `sql/07_hermes_agent_root.sql`. All fields are nullable so existing rows
  * remain valid; the dashboard derives sane defaults from `status` / `role`

@@ -14,3 +14,4 @@ export * from './SalesView';
 export * from './MarketplaceView';
 export * from './ItDataView';
 export * from './AgentRootView';
+export * from './B3DynamicsDemoView';
